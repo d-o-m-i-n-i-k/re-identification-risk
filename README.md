@@ -27,3 +27,7 @@ In *unicity_activities.py* specify:
 Projection refer to a subset of attributes in the event log.
 It is possible to specify the number of points as an absolute number or as a relative frequency.
 The algorithm outputs the ratio of unique cases to the total number of cases.
+
+### Step3 Abstraction of the attributes
+The re-identification risk can be minimized by generalizing the attributes.
+With *timestamp_abstraction.py* the timestamps of the event logs can be abstracted, for example to remove the time.
