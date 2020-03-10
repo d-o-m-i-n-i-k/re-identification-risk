@@ -63,7 +63,8 @@ def calculate_unicity(data, qi, events, number_points):
     The other events[1] ... events[len(events)-1] correspond to the other event attributes or timestamps.
     
     1. Activities and their correspondig attributes are selected randomly. We call them points. 
-    2. Each case, more precisely all its points, are compared with the others. If the case is the only one with these points, it is declared as unique. 
+    2. Each case, more precisely all its points, are compared with the others.
+    If the case is the only one with these points, it is declared as unique.
     The sum(uniques) represents the number of cases that are unique with the given points.
     3. Unicity is then the proportion of unique cases compared to the total number of cases.  
     """
