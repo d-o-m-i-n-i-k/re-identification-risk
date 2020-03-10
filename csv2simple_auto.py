@@ -6,6 +6,7 @@ import numpy as np
 import os
 # date and time
 from datetime import datetime
+
 ################################################
 # Variables to customise
 ################################################
@@ -28,10 +29,12 @@ csv_delimiter = ';'
 # only give one unique identifier
 unique_identifier = ['Case ID']
 
-
-# List of attributes to consider
+# # # Either define attributes to consider or attributes to exclude # # #
+# List of attributes to consider.
+# If left blank, a list of attributes to exclude can be given
 attributes = []
 
+# exclude attributes. the list of 'attributes' has to be left empty for the exclusion list to be taken into account
 attributes_to_exclude = ['Variant']
 
 ################################################
@@ -121,6 +124,7 @@ if len(filename_concat) > 30:
     filename_concat = filename_beginning_part + '_' + str(len(attributes)) + '-Attributes_' + \
                       str(datetime.now().strftime('%Y-%m-%d_%H-%M')) + '.csv'
 
+path_data_export = path_data_export + filename_beginning_part + '/'
 # if export folder does not exist, create the folder
 if not os.path.exists(path_data_export):
     os.makedirs(path_data_export)

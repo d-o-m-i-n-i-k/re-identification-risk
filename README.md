@@ -14,9 +14,12 @@ Clone this repo to your local machine using ...
 ## Usage
 ### Step 1 Preparation of the data
 Summarize all event data that occurs for the corresponding case. After conversion, each row in this data set belongs to one case. 
-- Specify the path of the event log (csv)
-- Specify the unique identifier and the list of attributes to consider
-...
+- Specify the path of the event log (csv) (default is set to subfolder 'data' of the current working-directory)
+- Specify the name of the source-file
+- Specify the unique identifier like CaseID, serial number etc.
+- Specify a list of attributes to consider or a list of attributes to exclude
+- The resulting list will be exported by default to a folder named after the dataset. 
+The folder is a subfolder of 'results' in the working directory.
 
 ### Step 2 Calculate unicity 
 Unicity is the number of cases that are uniquely identifiable by the set of case attributes or the set of event attributes.
