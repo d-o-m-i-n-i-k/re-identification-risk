@@ -3,13 +3,14 @@
 The re-identification risk is quantified with measures for the individual uniqueness in event logs. 
 
 Based on the approach presented in:
-S. Nuñez von Voigt, S.A. Fahrenkrog-Petersen, D. Janssen, A. Koschmider, F. Tschorsch, F. Mannhardt, O. Landsiedel and M. Weidlich. Quantifying the Re-identification Risk\\of Event Logs for Process Mining. In ...
+S. Nuñez von Voigt, S.A. Fahrenkrog-Petersen, D. Janssen, A. Koschmider, F. Tschorsch, F. Mannhardt, O. Landsiedel and M. Weidlich. Quantifying the Re-identification Risk of Event Logs for Process Mining. 
 
 
 ## Installation
 ### Clone
-Clone this repo to your local machine using ...
+Clone this repo to your local machine using https://github.com/d-o-m-i-n-i-k/re-identification-risk.git
 ### Requirements
+- Python 3.5+
 - Folder in working directory with the source data. Named 'datasets' by default.
 - Folder where results will be written to. Named 'results' by default.
 
