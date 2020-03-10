@@ -4,22 +4,21 @@ import pandas as pd
 import numpy as np
 # for folder creation
 import os
+# date and time
+from datetime import datetime
 ################################################
 # Variables to customise
 ################################################
 # path of sources
-path_data_sources = '/Users/dominik-cau/Documents/Lernen/Uni/Promotion/Projekte/' \
-                    'Forschungsgruppe-Privacy/Datensätze.nosync/Sepsis/'
+path_data_sources = 'data/'
 
-
-path_data_export = '/Users/dominik-cau/Documents/Lernen/Uni/Promotion/Projekte/' \
-                    'Forschungsgruppe-Privacy/Datensätze.nosync/Agrarsubventionen/export/'
+path_data_export = 'results/'
 
 # source filename
-csv_source_file_name = 'sepsis_raw.csv'
+csv_source_file_name = 'SepsisCases-EventLog.csv'
 
 # delimiter of csv-file
-csv_delimiter = ','
+csv_delimiter = ';'
 
 # Customisable variables have to be in the format:
 # ['event_j', 'dynamic_feature_h_1', 'dynamic_feature_h_2']
@@ -27,17 +26,21 @@ csv_delimiter = ','
 # unique identifier column (static feature)
 # examples: CaseID, serial number
 # only give one unique identifier
-unique_identifier = ['case']
+unique_identifier = ['Case ID']
 
 
 # List of attributes to consider
-attributes = ['event', 'Age', 'startTime']
+attributes = []
+
+attributes_to_exclude = ['Variant']
 
 ################################################
 ################################################
 
 # read csv. data from disk
 df_data = pd.read_csv(filepath_or_buffer=path_data_sources + csv_source_file_name, delimiter=csv_delimiter)
+if not attributes:
+    attributes = [attr for attr in list(df_data) if attr not in (attributes_to_exclude + unique_identifier)]
 
 # drop all unnecessary columns
 df_important_columns = df_data[unique_identifier + attributes]
@@ -50,7 +53,6 @@ df_enumerated_data = df_grouped_by_identifier.aggregate(lambda x: list(x))
 
 # create list to store data frames of each attribute
 list_of_data_frames = []
-
 
 list_column_names = []
 
@@ -113,6 +115,11 @@ filename_end_part = '-'.join(list_file_name)
 
 # in case only "constant_attribute" OR "variable_attribute" is given, replace double underscore with a single one
 filename_concat = filename_beginning_part + '_' + filename_end_part + '.csv'
+
+# if filename too long use only quantity of attributes and current time
+if len(filename_concat) > 30:
+    filename_concat = filename_beginning_part + '_' + str(len(attributes)) + '-Attributes_' + \
+                      str(datetime.now().strftime('%Y-%m-%d_%H-%M')) + '.csv'
 
 # if export folder does not exist, create the folder
 if not os.path.exists(path_data_export):
