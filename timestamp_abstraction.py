@@ -14,18 +14,20 @@ def retrieve_args():
     args = parser.parse_args()
     return args.inputFile, args.abstractionLevel, args.outputFile
 
+
 def run_abstraction(eventLog,abstractionLevel):
-    eventLog[colNameTimeStamp] = pd.to_datetime(eventLog[colNameTimeStamp],format=dateTimeFormat)
+    eventLog[colNameTimeStamp] = pd.to_datetime(eventLog[colNameTimeStamp], format=dateTimeFormat)
     eventLog[colNameTimeStamp] = eventLog[colNameTimeStamp].apply(lambda x: x.ceil(freq=abstractionLevel))
     return eventLog
 
-#Define constants
+
+# Define constants
 colNameTimeStamp = "Complete Timestamp"
 dateTimeFormat = "%Y/%m/%d %H:%M:%S"
 
 
-#Main
+# Main
 inputFile, abstractionLevel, outputFile = retrieve_args()
-eventLog = pd.read_csv(inputFile,delimiter=";")
+eventLog = pd.read_csv(inputFile, delimiter=";")
 eventLog = run_abstraction(eventLog, abstractionLevel)
 eventLog.to_csv(outputFile)

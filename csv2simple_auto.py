@@ -11,7 +11,7 @@ from datetime import datetime
 # Variables to customise
 ################################################
 # path of sources
-path_data_sources = 'data/'
+path_data_sources = 'datasets/'
 
 path_data_export = 'results/'
 
@@ -32,10 +32,10 @@ unique_identifier = ['Case ID']
 # # # Either define attributes to consider or attributes to exclude # # #
 # List of attributes to consider.
 # If left blank, a list of attributes to exclude can be given
-attributes = []
+attributes = ['Complete Timestamp', 'Age', 'Activity', 'org:group']
 
 # exclude attributes. the list of 'attributes' has to be left empty for the exclusion list to be taken into account
-attributes_to_exclude = ['Variant']
+attributes_to_exclude = []
 
 ################################################
 ################################################
@@ -120,7 +120,7 @@ filename_end_part = '-'.join(list_file_name)
 filename_concat = filename_beginning_part + '_' + filename_end_part + '.csv'
 
 # if filename too long use only quantity of attributes and current time
-if len(filename_concat) > 30:
+if len(filename_concat) > 75:
     filename_concat = filename_beginning_part + '_' + str(len(attributes)) + '-Attributes_' + \
                       str(datetime.now().strftime('%Y-%m-%d_%H-%M')) + '.csv'
 
